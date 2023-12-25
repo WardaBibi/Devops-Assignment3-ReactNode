@@ -50,13 +50,6 @@ jobs:
           remote_user: ubuntu
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Installing node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Testing Node Installation
-        run: |
-          node --version
 
       # Install Any New Dependencies
       - name: Installing Node Modules
@@ -67,6 +60,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
+	    sudo apt-get install -y nodejs npm
             cd ReactNodeTesting
             npm install
 
