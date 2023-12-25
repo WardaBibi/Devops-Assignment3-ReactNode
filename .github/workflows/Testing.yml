@@ -78,7 +78,7 @@ jobs:
                  Workflow of ${{github.repository}}
                  initiated by ${{github.actor}}
                  was sucessfully executed. View the
-                 changes on the server staging server!
+                 changes on the Testing  server!
 
       - name: Send mail on failure
         if: ${{ failure() }}
