@@ -60,13 +60,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            sudo apt-get install -y nodejs npm
-            sudo apt-get install -y docker.io
-            cd ReactNodeTesting
-            npm install
-            cd ..
-            sudo docker  build -t app .
-            sudo docker compose up
+            sudo chmod deploy.sh
+            ./deploy.sh
 
        # Mail  QA on success/failure
       - name: Send mail on success

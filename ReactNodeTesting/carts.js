@@ -8,13 +8,13 @@ let activeCarts = [
       {
         title: "Fresh Strawberries",
         description: "Assorted sizes, 2 cartons",
-        cost: 200,
+        cost: 400,
         imageUrl: "stawberries.jpg"
       },
       {
         title: "Fresh Blackberries",
         description: "Assorted sizes, 2 cartons",
-        cost: 295,
+        cost: 500,
         imageUrl: "blackberries.jpg"
       }
     ]
@@ -25,7 +25,7 @@ let activeCarts = [
       {
         title: "Yummy cookies",
         description: "Flour and chocolate chips",
-        cost: 150,
+        cost: 400,
         imageUrl: "cookies.jpg"
       }
     ]
