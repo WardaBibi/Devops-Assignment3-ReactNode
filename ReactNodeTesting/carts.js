@@ -8,7 +8,7 @@ let activeCarts = [
       {
         title: "Fresh Strawberries",
         description: "Assorted sizes, 2 cartons",
-        cost: 400,
+        cost: 500,
         imageUrl: "stawberries.jpg"
       },
       {
