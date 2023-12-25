@@ -1,0 +1,97 @@
+name: Workflow for Deployment on Staging Server
+
+run-name: ${{github.actor}} initiated the workflow - Deploy To Staging
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking Out
+        uses: actions/checkout@v4
+      - name: Setting Up Node JS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Testing Node Installation
+        run: |
+          node --version
+      - name: Install dependencies
+        run: |
+          cd  ReactNodeTesting
+          npm install
+      - name: Building Project
+        run: |
+          cd ReactNodeTesting
+          npm run build-react
+
+      - name: Testing The Project
+        run: |
+          cd ReactNodeTesting
+          npm run test-react
+
+      - name: Linting In The Project
+        run: |
+          cd ReactNodeTesting
+          npx eslint src/sum.js src/cartview.js src/shippingOptions.js
+
+      # Deploy All Changes To The Staging Server
+      - name: Deploy To Changes To Staging Server
+        uses: burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avzr --delete
+          path: ./*
+          remote_path: ~/
+          remote_host: 44.203.139.70
+          remote_user: ubuntu
+          remote_key: ${{ secrets.SSH_KEY }}
+
+      # Install Any New Dependencies
+      - name: Installing Node Modules
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: 44.203.139.70
+          username: ubuntu
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            cd ReactNodeTesting
+            npm install
+
+       # Mail  QA on success/failure
+      - name: Send mail on success
+        if: ${{ success() }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.MAIL_ADDRESS}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Successfully Deploying Changes on staging  Server
+          to: codewithwarda@gmail.com,wardahtariq38@gmail.com
+          from: codewithwarda@gmail.com
+          body: |
+                 Workflow of ${{github.repository}}
+                 initiated by ${{github.actor}}
+                 was sucessfully executed. View the
+                 changes on the server staging server!
+
+      - name: Send mail on failure
+        if: ${{ failure() }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.MAIL_ADDRESS}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Failed Deploying Changes on staging  Server
+          to: codewithwarda@gmail.com,wardahtariq38@gmail.com
+          from: codewithwarda@gmail.com
+          body: |
+                  Workflow of ${{github.repository}}
+                  initiated by ${{github.actor}} failed,
+                   kindly check the workflow logs!
