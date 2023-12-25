@@ -1,19 +1,21 @@
 #!/bin/bash
 
 # Install Node.js and npm
-sudo apt-get install -y nodejs npm
+#sudo apt-get install -y nodejs npm
 
 # Install Docker
-sudo apt-get install -y docker.io
+#sudo apt-get install -y docker.io
 
 # Change to the project directory
-cd ./ReactNodeTesting
+#cd ./ReactNodeTesting
 
 # Install npm dependencies
-npm install
+#npm install
 
 # Navigate back to the previous directory
-cd -
+#cd -
+
+sudo apt-get update
 
 # Install dependencies for Docker
 sudo apt-get install -y ca-certificates curl gnupg
