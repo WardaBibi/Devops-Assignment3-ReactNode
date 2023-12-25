@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  frontend:
+    image: app
+    ports:
+      - 8080:3000
+    command:
+      npm start
+    volumes:
+      - ./ReactNodeTesting:/App
+
+  backend:
+    image: app
+    ports:
+      - 3000:3000
+    command:
+      node index.js
+    volumes:
+      - ./ReactNodeTesting:/App
