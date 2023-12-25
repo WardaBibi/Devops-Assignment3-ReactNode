@@ -60,7 +60,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-	    sudo apt-get install -y nodejs npm
+            sudo apt-get install -y nodejs npm
             cd ReactNodeTesting
             npm install
 
