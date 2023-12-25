@@ -6,7 +6,7 @@ let activeCarts = [
     cartID: "777",
     cartItems: [
       {
-        title: "Fresh Strawberries",
+        title: "Fresh and Juicy Strawberries",
         description: "Assorted sizes, 2 cartons",
         cost: 400,
         imageUrl: "stawberries.jpg"
