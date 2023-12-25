@@ -50,6 +50,14 @@ jobs:
           remote_user: ubuntu
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Installing node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Testing Node Installation
+        run: |
+          node --version
+
       # Install Any New Dependencies
       - name: Installing Node Modules
         uses: appleboy/ssh-action@v1.0.0
