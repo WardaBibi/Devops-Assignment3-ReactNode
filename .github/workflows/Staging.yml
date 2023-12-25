@@ -60,7 +60,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            sudo chmod deploy.sh
+            sudo chmod u+x  deploy.sh
             ./deploy.sh
 
        # Mail  QA on success/failure
