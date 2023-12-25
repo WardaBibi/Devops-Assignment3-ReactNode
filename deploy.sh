@@ -33,6 +33,7 @@ sudo apt-get update
 
 # Install Docker components
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose
+sudo service docker start
 
 # Build Docker image
 sudo docker build -t app .
